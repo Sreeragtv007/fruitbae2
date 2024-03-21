@@ -44,12 +44,13 @@
   </head>
 
   <body>
+    
     <!-- Spinner Start -->
     <div
-      id="spinner"
-      class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center"
+    id="spinner"
+    class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center"
     >
-      <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
 
@@ -95,8 +96,8 @@
           </button>
           <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-              <a href="index.html" class="nav-item nav-link active">Home</a>
-              <a href="shop.html" class="nav-item nav-link">Shop</a>
+              <a href="{% url 'index' %}" class="nav-item nav-link active">Home</a>
+              <a href="{% url 'shop' %}" class="nav-item nav-link">Shop</a>
               <a href="shop-detail.html" class="nav-item nav-link"
                 >Shop Detail</a
               >
@@ -108,7 +109,7 @@
                   >Pages</a
                 >
                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                  <a href="cart.html" class="dropdown-item">Cart</a>
+                  <a href="{% url 'cart' %}" class="dropdown-item">Cart</a>
                   <a href="chackout.html" class="dropdown-item">Chackout</a>
                   <a href="testimonial.html" class="dropdown-item"
                     >Testimonial</a
@@ -142,6 +143,14 @@
         </nav>
       </div>
     </div>
+
+    {% block shop %}
+    
+    {% endblock shop %}
+
+    {% block cart %}
+    
+    {% endblock cart %}
 
     <!-- Navbar End -->
 
@@ -282,26 +291,20 @@
                                   <span class="text-dark" style="width: 130px;">All Products</span>
                               </a>
                           </li>
-                          <li class="nav-item">
-                              <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                  <span class="text-dark" style="width: 130px;">Vegetables</span>
+                          {% for i in category  %}
+                          
+                            <li class="nav-item">
+                              <a class="d-flex py-2 m-2 bg-light rounded-pill"  href="">
+                               
+                                  <span class="text-dark" style="width: 130px;">{{i.name}}</span>
                               </a>
                           </li>
-                          <li class="nav-item">
-                              <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                  <span class="text-dark" style="width: 130px;">Fruits</span>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                  <span class="text-dark" style="width: 130px;">Bread</span>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                  <span class="text-dark" style="width: 130px;">Meat</span>
-                              </a>
-                          </li>
+                          
+                          {% endfor %}
+  
+                          
+                         
+                          
                       </ul>
                   </div>
               </div>
@@ -313,8 +316,8 @@
                                 {% for i in products  %}
                                   
                                 
-                                  <div class="col-md-6 col-lg-4 col-xl-3">
-                                      <div class="rounded position-relative fruite-item">
+                                  <div class="col-md-6 col-lg-4 col-xl-3" >
+                                      <div class="rounded position-relative fruite-item" >
                                           <div class="fruite-img">
                                               <img src="{{i.image}}" class="img-fluid w-100 rounded-top" alt="">
                                           </div>
@@ -339,11 +342,12 @@
           </div>      
       </div>
     </div>
-
+    
+  
     <!-- Fruits Shop End-->
 
     <!-- Featurs Start -->
-    <div class="container-fluid service py-5">
+    <!-- <div class="container-fluid service py-5">
       <div class="container py-5">
         <div class="row g-4 justify-content-center">
           <div class="col-md-6 col-lg-4">
@@ -407,12 +411,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Featurs End -->
 
 
     <!-- Vesitable Shop Start-->
-    <div class="container-fluid vesitable py-5">
+    <!-- <div class="container-fluid vesitable py-5">
       <div class="container py-5">
         <h1 class="mb-0">Fresh Organic Vegetables</h1>
         <div class="owl-carousel vegetable-carousel justify-content-center">
@@ -458,7 +462,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Vesitable Shop End -->
 
     
