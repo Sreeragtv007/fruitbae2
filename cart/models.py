@@ -12,3 +12,8 @@ class Cart(models.Model):
         User, on_delete=models.CASCADE, blank=True, null=True)
     qty = models.IntegerField(default=1)
     total = models.IntegerField(blank=True, null=True)
+    
+    def save(self, *args, **kwargs):
+        self.total=int(self.qty)*int(self.product.price)
+       
+        super(Cart, self).save(*args, **kwargs) # Call the real save() method

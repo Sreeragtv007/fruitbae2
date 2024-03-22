@@ -6,8 +6,10 @@ from app.models import *
 # Create your views here.
 def cart(request, *args, **kwargs):
     cart = Cart.objects.filter(user=request.user)
+    
+    cart_count=cart.count()
 
-    context = {'cart': cart}
+    context = {'cart': cart,'cart_count':cart_count}
     return render(request, 'cart.html', context)
 
 
