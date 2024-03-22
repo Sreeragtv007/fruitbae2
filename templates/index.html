@@ -110,7 +110,7 @@
                 >
                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                   <a href="{% url 'cart' %}" class="dropdown-item">Cart</a>
-                  <a href="chackout.html" class="dropdown-item">Chackout</a>
+                  <a href="{% url 'checkout' %}" class="dropdown-item">Chackout</a>
                   <a href="testimonial.html" class="dropdown-item"
                     >Testimonial</a
                   >
@@ -143,6 +143,10 @@
         </nav>
       </div>
     </div>
+
+    {% block checkout %}
+    
+    {% endblock checkout %}
 
     {% block shop %}
     

@@ -8,8 +8,14 @@ def cart(request, *args, **kwargs):
     cart = Cart.objects.filter(user=request.user)
     
     cart_count=cart.count()
-
-    context = {'cart': cart,'cart_count':cart_count}
+    cart_total=0
+    for i in cart:
+        cart_total=cart_total+i.total
+    
+    
+    
+    
+    context = {'cart': cart,'cart_count':cart_count,'cart_total':cart_total}
     return render(request, 'cart.html', context)
 
 
@@ -24,3 +30,6 @@ def removeFromCart(request,pk):
     cart=Cart.objects.get(id=pk)
     cart.delete()
     return redirect('cart')
+
+def checkOut(request):
+    return render(request,'checkout.html')

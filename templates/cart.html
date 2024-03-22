@@ -23,14 +23,14 @@
                     <tr>
                         <th scope="row p-5">
                             <div class="d-flex align-items-center">
-                                <img src="" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                <img src="{{i.product.image.url}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                             </div>
                         </th>
                         <td>
-                            <p class="mb-0 mt-4">{{i.product}}</p>
+                            <p class="mb-0 mt-4"><h4>{{i.product}}</h4></p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">{{i.product.price}} $</p>
+                            <p class="mb-0 mt-4"><h4>{{i.product.price}} </h4>$</p>
                         </td>
                         <td>
                             <div class="input-group quantity mt-4" style="width: 100px;">
@@ -48,7 +48,7 @@
                             </div>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">{{i.total}} $</p>
+                            <p class="mb-0 mt-4"><h4>{{i.total}}  $</h4> </p>
                         </td>
                         <td>
                             <button class="btn btn-md rounded-circle bg-light border mt-4" >
@@ -74,7 +74,7 @@
                         <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
                         <div class="d-flex justify-content-between mb-4">
                             <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0">$96.00</p>
+                            <p class="mb-0">${{cart_total}}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Shipping</h5>
