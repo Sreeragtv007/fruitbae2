@@ -14,6 +14,7 @@ class Product(models.Model):
     categ = models.ForeignKey(
         'category', on_delete=models.CASCADE, blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
+    
   
         
         

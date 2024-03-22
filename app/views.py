@@ -6,9 +6,12 @@ from .models import *
 def index(request, *args, **kwargs):
 
     products = Product.objects.all()
+    total_products=products.count()
+    user=User.objects.all().count()
+    
     category = Category.objects.all()
 
-    context = {'products': products, 'category': category}
+    context = {'products': products, 'category': category,'user':user,'total_products':total_products}
     return render(request, 'products.html', context)
 
 
@@ -16,5 +19,12 @@ def shop(request, *args, **kwargs):
 
     context = {}
     return render(request, 'shop.html', context)
+
+def shopDetails(request, *args, **kwargs):
+
+    context = {}
+    return render(request, 'shop-detail.html', context)
+
+
 
 

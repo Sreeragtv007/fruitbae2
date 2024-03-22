@@ -32,4 +32,9 @@ def removeFromCart(request,pk):
     return redirect('cart')
 
 def checkOut(request):
-    return render(request,'checkout.html')
+    cart = Cart.objects.filter(user=request.user)
+    cart_total=0
+    for i in cart:
+        cart_total=cart_total+i.total
+    context = {'cart': cart,'cart_total':cart_total}
+    return render(request,'checkout.html',context)
