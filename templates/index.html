@@ -118,12 +118,12 @@
               </div>
               <a href="{% url 'register' %}" class="nav-item nav-link">register</a>
 
-              {% if request.user %}
+             
               <a href="{% url 'logout' %}" class="nav-item nav-link">logout</a>
-                {% else %}
+              
                 <a href="{% url 'login' %}" class="nav-item nav-link">login</a>
 
-              {% endif %}
+              
               
 
             </div>
@@ -144,7 +144,7 @@
                 >
               </a>
               <a href="#" class="my-auto">
-                <i class="fas fa-user fa-2x"></i>
+                <i class="fas fa-user fa-2x"> {{request.user}}</i>
               </a>
             </div>
           </div>

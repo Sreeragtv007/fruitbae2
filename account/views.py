@@ -23,7 +23,7 @@ def register(request):
             return redirect('register')
 
     return render (request,'register.html')
-def login_user(request):
+def loginUser(request):
      if request.POST:
         uname = request.POST.get('username')
         pass1 = request.POST.get('pass1')
@@ -38,6 +38,6 @@ def login_user(request):
      return render(request, 'login.html')
 
 
-def logout_user(request):
+def logoutUser(request):
     logout(request)
-    return render(request, 'login.html')
+    return redirect('login')
