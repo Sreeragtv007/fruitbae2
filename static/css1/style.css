@@ -305,7 +305,17 @@
     box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
 }
 
-.fruite .fruite-item .fruite-img {
+.fruite-img{
+
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 10px 10px 0 0;
+    width: 336px;
+    height: 336px;
+
+}
+
+.fruite .fruite-item  {
     overflow: hidden;
     transition: 0.5s;
     border-radius: 10px 10px 0 0;

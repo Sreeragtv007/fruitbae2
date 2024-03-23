@@ -2,12 +2,16 @@ from django.shortcuts import render
 from .models import *
 from app.models import *
 
+from django.contrib import messages
+
 
 # Create your views here.
 def cart(request, *args, **kwargs):
     cart = Cart.objects.filter(user=request.user)
     
     cart_count=cart.count()
+    if cart_count == 0:
+        messages.info(request,"cart is empty")
     cart_total=0
     for i in cart:
         cart_total=cart_total+i.total

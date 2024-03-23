@@ -15,6 +15,7 @@ class Product(models.Model):
         'category', on_delete=models.CASCADE, blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
     
+    
   
         
         
@@ -32,5 +33,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+class Review(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    product_review=models.TextField(blank=True, null=True)
+    created = models.DateTimeField(auto_now=True)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True, null=True)
+    
 
