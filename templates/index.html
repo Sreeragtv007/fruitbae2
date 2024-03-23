@@ -116,12 +116,32 @@
                   <a href="404.html" class="dropdown-item">404 Page</a>
                 </div>
               </div>
-              <a href="{% url 'register' %}" class="nav-item nav-link">register</a>
 
-             
-              <a href="{% url 'logout' %}" class="nav-item nav-link">logout</a>
+              <div class="nav-item dropdown">
+                <a
+                  href="#"
+                  class="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  >accounts</a
+                >
+                <div class="dropdown-menu m-0 bg-secondary rounded-0">
+
+                  
+                  <a href="{% url 'logout' %}" class="dropdown-item"
+                  >logout</a>
+                  
+                  <a href="{% url 'register' %}" class="dropdown-item">register</a>
+                  <a href="{% url 'login' %}" class="dropdown-item">login</a>
+
+                
+                 
+                  
+                </div>
+              </div>
+
               
-                <a href="{% url 'login' %}" class="nav-item nav-link">login</a>
+
+                
 
               
               

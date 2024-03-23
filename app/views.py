@@ -19,8 +19,11 @@ def index(request, **kwargs):
 
 @login_required(login_url='login')
 def shop(request, *args, **kwargs):
+    category=Category.objects.all()
+    products=Product.objects.all()
+                
 
-    context = {}
+    context = {'category':category,'products':products}
     return render(request, 'shop.html', context)
 
 
