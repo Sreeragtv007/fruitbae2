@@ -15,7 +15,7 @@ def index(request, **kwargs):
     products = Product.objects.all()
     total_products = products.count()
 
-    p = Paginator(products,2)
+    p = Paginator(products,4)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)  
@@ -55,7 +55,18 @@ def productFilter(request, pk):
     category = Category.objects.all()
     products = Product.objects.filter(categ=pk)
     total_products = products.count()
+    
+    p = Paginator(products,4)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  
+    except PageNotAnInteger:
+        page_obj = p.page(1)
+    except EmptyPage:
+        
+        page_obj = p.page(p.num_pages)
 
-    context = {'products': products, 'category': category,
+
+    context = {'page_obj': page_obj, 'category': category,
                'user': user, 'total_products': total_products}
     return render(request, 'products.html', context)
