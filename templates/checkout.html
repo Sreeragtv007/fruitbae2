@@ -9,13 +9,13 @@
         <form action="#">
             <div class="row g-5">
 
-                <form action="" method="POST"> {% csrf_token %}
+                <form action="{% url 'checkout' %}" method="POST"> {% csrf_token %}
                 <div class="col-md-12 col-lg-3 col-xl-7">
                     <div class="row">
-                        <div class="col-md-12 col-lg-6">
+                        <div class="col-md-12 col-lg-4">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">First Name<sup>*</sup></label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name="name" required>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-6">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="button" value="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                        <button type="button" value="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"><a href="">lace Order</a></button>
                     </div>
                     
                   
@@ -90,38 +90,18 @@
                                 
                               
                               
+                               
                                 <tr>
                                     <th scope="row">
                                     </th>
                                     <td class="py-5">
-                                        <p class="mb-0 text-dark py-4">Shipping</p>
-                                    </td>
-                                    <td colspan="3" class="py-5">
-                                        <div class="form-check text-start">
-                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-1">Free Shipping</label>
-                                        </div>
-                                        <div class="form-check text-start">
-                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
-                                        </div>
-                                        <div class="form-check text-start">
-                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-3">Local Pickup: $8.00</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                    <td class="py-5">
-                                        <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
+                                        <p class="mb-0 text-dark text-uppercase py-3">TOTAL PRICE </p>
                                     </td>
                                     <td class="py-5"></td>
                                     <td class="py-5"></td>
                                     <td class="py-5">
-                                        <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">$  <h4> {{cart_total}}</h4></p>
+                                        <div class="py-3 ">
+                                            <p class="mb-0 text-dark"></p><h4> {{cart_total}}</h4></p>
                                         </div>
                                     </td>
                                 </tr>

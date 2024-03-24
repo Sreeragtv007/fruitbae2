@@ -44,8 +44,11 @@ def shop(request, *args, **kwargs):
 @login_required(login_url='login')
 def shopDetails(request, pk):
     product = Product.objects.get(id=pk)
+    review=Review.objects.all()
+    related_product=Product.objects.filter(categ=product.categ)
+    print(related_product)
 
-    context = {'product': product}
+    context = {'product': product,'review':review,'related_product':related_product}
     return render(request, 'shop-detail.html', context)
 
 
@@ -70,3 +73,14 @@ def productFilter(request, pk):
     context = {'page_obj': page_obj, 'category': category,
                'user': user, 'total_products': total_products}
     return render(request, 'products.html', context)
+
+
+def addReview(request,pk):
+    product=Product.objects.get(id=pk)
+    user=request.user
+    review=Review.objects.create(user=user,product_review=request.POST['review'],product=product)
+    
+    return redirect('shopdetails' ,pk=pk)
+    
+
+        

@@ -27,6 +27,7 @@ def addtoCart(request,pk):
     product=Product.objects.get(id=pk)
     cart=Cart.objects.create(product=product,user=request.user)
     cart.save()
+    messages.info(request,'product added to cart sucessfully')
     return  redirect('index')
 
 
@@ -36,9 +37,15 @@ def removeFromCart(request,pk):
     return redirect('cart')
 
 def checkOut(request):
-    cart = Cart.objects.filter(user=request.user)
-    cart_total=0
-    for i in cart:
-        cart_total=cart_total+i.total
-    context = {'cart': cart,'cart_total':cart_total}
-    return render(request,'checkout.html',context)
+    if request.method == 'GET':
+        cart = Cart.objects.filter(user=request.user)
+        cart_total=0
+        for i in cart:
+            cart_total=cart_total+i.total
+        context = {'cart': cart,'cart_total':cart_total}
+        return render(request,'checkout.html',context)
+    if request.method == 'POST':
+        print(request.POST['name'])
+        return redirect('index')
+        
+
