@@ -65,7 +65,7 @@
                             </thead>
                             <tbody>
 
-                                {% for i in cart1  %}
+                                {% for i in cart  %}
                                 <tr>
                                     <th scope="row">
                                         <div class="d-flex align-items-center mt-2">
@@ -74,28 +74,18 @@
                                     </th>
                                     <td class="py-5">{{i.product}}</td>
                                     <td class="py-5">{{i.product.price}}</td>
-                                    
+                                    <td class="py-5">{{i.qty}}</td>
+                                    <td class="py-5">{{i.total}}</td>
+
                                 </tr>
+                             
                                 {% endfor %}
                                 
                                 
                               
                               
                                
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                    <td class="py-5">
-                                        <p class="mb-0 text-dark text-uppercase py-3"><h4>TOTAL PRICE   </h4> </p>
-                                    </td>
-                                    <td class="py-5"></td>
-                                    <td class="py-5"></td>
-                                    <td class="py-5">
-                                        <div class="py-3 ">
-                                            <p class="mb-0 text-dark"></p><h4> {{cart_total}} </h4>Ruppees</p>
-                                        </div>
-                                    </td>
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
