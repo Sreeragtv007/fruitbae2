@@ -9,7 +9,7 @@
         <form action="#">
             <div class="row g-5">
 
-                <form action="{% url 'checkout' %}" method="POST"> {% csrf_token %}
+                <form action="{% url 'checkout' %}" method="post"> {% csrf_token %}
                 <div class="col-md-12 col-lg-3 col-xl-7">
                     <div class="row">
                         <div class="col-md-12 col-lg-4">
@@ -18,41 +18,33 @@
                                 <input type="text" class="form-control" name="name" required>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6">
-                           
-                        </div>
+                     
                     </div>
                   
                     <div class="form-item">
                         <label class="form-label my-3">Address <sup>*</sup></label>
-                        <input type="text" class="form-control" placeholder="House Number Street Name" required>
+                        <input type="text" class="form-control" placeholder="House Number Street Name" name="address" required>
                     </div>
-                    <div class="form-item">
-                        <label class="form-label my-3" >Town/City<sup>*</sup></label>
-                        <input type="text" class="form-control"required>
-                    </div>
+                   
                   
                     <div class="form-item">
                         <label class="form-label my-3">Postcode/Zip<sup>*</sup></label>
-                        <input type="text" class="form-control"required>
+                        <input type="text" class="form-control"required name="pincode">
                     </div>
-                    <div class="form-item">
-                        <label class="form-label my-3">Mobile<sup>*</sup></label>
-                        <input type="tel" class="form-control"required>
-                    </div>
+                  
                     <div class="form-item">
                         <label class="form-label my-3">Email Address<sup>*</sup></label>
-                        <input type="email" class="form-control"required>
+                        <input type="email" class="form-control"required name="email">
                     </div>
 
                     <div class="col-12">
                         <div class="form-check text-start my-3">
-                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Delivery-1" name="Delivery" value="Delivery">
+                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Delivery-1" name="Delivery" value="">
                             <label class="form-check-label" for="Delivery-1">Cash On Delivery</label>
                         </div>
                     </div>
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="button" value="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"><a href="">lace Order</a></button>
+                        <button type="submit" value="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">place Order</button>
                     </div>
                     
                   
@@ -73,7 +65,7 @@
                             </thead>
                             <tbody>
 
-                                {% for i in cart  %}
+                                {% for i in cart1  %}
                                 <tr>
                                     <th scope="row">
                                         <div class="d-flex align-items-center mt-2">
@@ -82,8 +74,7 @@
                                     </th>
                                     <td class="py-5">{{i.product}}</td>
                                     <td class="py-5">{{i.product.price}}</td>
-                                    <td class="py-5">{{i.qty}}</td>
-                                    <td class="py-5">$ {{ i.total}}</td>
+                                    
                                 </tr>
                                 {% endfor %}
                                 
@@ -95,13 +86,13 @@
                                     <th scope="row">
                                     </th>
                                     <td class="py-5">
-                                        <p class="mb-0 text-dark text-uppercase py-3">TOTAL PRICE </p>
+                                        <p class="mb-0 text-dark text-uppercase py-3"><h4>TOTAL PRICE   </h4> </p>
                                     </td>
                                     <td class="py-5"></td>
                                     <td class="py-5"></td>
                                     <td class="py-5">
                                         <div class="py-3 ">
-                                            <p class="mb-0 text-dark"></p><h4> {{cart_total}}</h4></p>
+                                            <p class="mb-0 text-dark"></p><h4> {{cart_total}} </h4>Ruppees</p>
                                         </div>
                                     </td>
                                 </tr>

@@ -17,3 +17,14 @@ class Cart(models.Model):
         self.total=int(self.qty)*int(self.product.price)
        
         super(Cart, self).save(*args, **kwargs) # Call the real save() method
+        
+class Address(models.Model):
+    name=models.CharField(max_length=200,blank=True, null=True)
+    address=models.TextField(blank=True, null=True)
+    pincode=models.IntegerField(blank=True, null=True)
+    email=models.CharField(max_length=50,blank=True, null=True)
+    
+class Checkout(models.Model):
+    # cart=models.ForeignKey(Cart,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
+    address=models.OneToOneField(Address,on_delete=models.CASCADE,blank=True, null=True)
