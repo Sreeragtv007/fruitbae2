@@ -48,11 +48,10 @@ def checkOut(request):
 
     if request.method == 'GET':
         
-        total_price=0
-        for i in cart:
-            total_price=total_price+i.product.price
+        
+        
             
-        context = {'cart': cart,'total_price':total_price}
+        context = {'cart': cart}
         return render(request, 'checkout.html', context)
     if request.method == 'POST':
         name=request.POST.get('name')
@@ -64,8 +63,9 @@ def checkOut(request):
                                          name=name,
                                          address=address,
                                          pincode=pincode,
-                                         email=email,
-                                         total_price=total_price)
+                                         email=email)
+        for i in cart:
+            checkout.cart.add(i)
         
         
         messages.info(request,'order is complited')
