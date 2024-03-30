@@ -9,7 +9,7 @@
     
    <div class="container-fluid py-5 ">
     <div class="container py-5">
-        <form action="{% url 'checkout' %}" method="POST"> {% csrf_token %}
+        <form action="{% url 'checkout' %}" method="GET"> {% csrf_token %}
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -38,10 +38,10 @@
                         <td>
                             <p class="mb-0 mt-4"><h4>{{i.product.price}} </h4>$</p>
                         </td>
-                        <td>
+                        <!-- <td>
                          
                         <input type="number" class="mb-0 mt-4 " style="width: 50px;"  name="qty">
-                        </td>
+                        </td> -->
                        
                         <td>
                             <button class="btn btn-md rounded-circle bg-light border mt-4" type="" >

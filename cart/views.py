@@ -47,15 +47,39 @@ def checkOut(request):
     cart = Cart.objects.filter(user=request.user)
 
     if request.method == 'GET':
-
-
-        context = {'cart': cart}
+        
+        total_price=0
+        for i in cart:
+            total_price=total_price+i.product.price
+            
+        context = {'cart': cart,'total_price':total_price}
         return render(request, 'checkout.html', context)
-    if request.method == "POST":
-        qty = request.POST.get("qty")
+    if request.method == 'POST':
+        name=request.POST.get('name')
+        address=request.POST.get('address')
+        pincode=request.POST.get('pincode')
+        email=request.POST.get('email')
         
-        cart.update(qty=qty)
+        checkout=Checkout.objects.create(user=request.user,
+                                         name=name,
+                                         address=address,
+                                         pincode=pincode,
+                                         email=email,
+                                         total_price=total_price)
+        
+        
+        messages.info(request,'order is complited')
+        
+        return redirect('index')
+    
+        
+        
+        
+            
+
+
+        
+    
         
         
 
-        return redirect('checkout')
