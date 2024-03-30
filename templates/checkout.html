@@ -6,7 +6,7 @@
 <div class="container-fluid py-5">
     <div class="container py-5">
         <h1 class="mb-4">Billing details</h1>
-        <form action="" method="POST"> {% csrf_token %}
+        <form action="{% url 'payment' %}" method="POST"> {% csrf_token %}
             <div class="row g-5">
 
                 
@@ -41,6 +41,8 @@
                         <div class="form-check text-start my-3">
                             <input type="checkbox" class="form-check-input bg-primary border-0" id="Delivery-1" name="Delivery" value="">
                             <label class="form-check-label" for="Delivery-1">Cash On Delivery</label>
+
+                            <input type="hidden" value="{{razorpay_total_amount}}" name="total_price">
                         </div>
                     </div>
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
@@ -92,7 +94,7 @@
                             </tbody>
                         </table>
 
-                        <div><h3>total price : {{total_price}}
+                        <div><h3>total price : {{total}}
                         </h3></div>
 
                     </div>
@@ -106,6 +108,8 @@
         
     </div>
 </div>
+
+
 
   
 {% endblock checkout %}

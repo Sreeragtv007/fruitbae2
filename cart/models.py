@@ -12,6 +12,7 @@ class Cart(models.Model):
         User, on_delete=models.CASCADE, blank=True, null=True)
     qty = models.IntegerField(default=1)
     total = models.IntegerField(blank=True, null=True)
+    order_complted=models.BooleanField(default=False)
     
     def save(self, *args, **kwargs):
         self.total=int(self.qty)*int(self.product.price)
@@ -27,7 +28,8 @@ class Checkout(models.Model):
     address=models.CharField(max_length=50,blank=True, null=True)
     pincode=models.IntegerField(blank=True, null=True)
     email=models.CharField(max_length=50,blank=True, null=True)
-    total_price=models.IntegerField(blank=True, null=True)
+    total_price=models.IntegerField(blank=True, null=True) 
+    payment=models.BooleanField(default=False)
 
     
  
