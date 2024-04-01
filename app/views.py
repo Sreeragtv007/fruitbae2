@@ -12,8 +12,10 @@ def index(request, **kwargs):
     
     user = User.objects.all().count()
     category = Category.objects.all()
-    products = Product.objects.all()
+    products = Product.objects.select_related('categ').all()
+    # products=Product.objects.all()
     total_products = products.count()
+    
 
     p = Paginator(products,4)
     page_number = request.GET.get('page')
@@ -31,14 +33,7 @@ def index(request, **kwargs):
     return render(request, 'products.html', context)
 
 
-@login_required(login_url='login')
-def shop(request, *args, **kwargs):
-    category=Category.objects.all()
-    products=Product.objects.all()
-                
 
-    context = {'category':category,'products':products}
-    return render(request, 'shop.html', context)
 
 
 @login_required(login_url='login')

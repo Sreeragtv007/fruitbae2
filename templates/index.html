@@ -97,7 +97,6 @@
           <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
               <a href="{% url 'index' %}" class="nav-item nav-link active">Home</a>
-              <!-- <a href="{% url 'shop' %}" class="nav-item nav-link">Shop</a> -->
 
               <a href="{% url 'cart' %}" class="nav-item nav-link active">Cart</a>
               
@@ -145,7 +144,7 @@
                   >{{cart_count}}</span
                 >
               </a>
-              <a href="#" class="my-auto">
+              <a href="{% url 'order' %}" class="my-auto">
                 <i class="fas fa-user fa-2x"> {{request.user}}</i>
               </a>
             </div>
@@ -153,6 +152,11 @@
         </nav>
       </div>
     </div>
+
+
+    {% block userorder %}
+      
+    {% endblock userorder %}
 
     {% block login %}
       

@@ -30,6 +30,7 @@ class Checkout(models.Model):
     email=models.CharField(max_length=50,blank=True, null=True)
     total_price=models.IntegerField(blank=True, null=True) 
     payment=models.BooleanField(default=False)
+    created=models.DateTimeField(auto_now_add=True)
 
     
  
