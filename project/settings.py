@@ -131,7 +131,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    home/ubuntu/fruitbae / "static"
+    BASE_DIR / "static"
     
 ]
 
