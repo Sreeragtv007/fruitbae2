@@ -151,3 +151,6 @@ RAZOR_KEY_SECRET = 'dRkVtesLD1jiz3cYngswxTw8'
 #     "127.0.0.1",
 #     # ...
 # ]
+
+
+CSRF_TRUSTED_ORIGINS = ['https://front.bluemix.net']
