@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
-@login_required(login_url='login')
+
 def index(request, **kwargs):
     
     user = User.objects.all().count()
