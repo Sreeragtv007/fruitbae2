@@ -22,7 +22,7 @@ class Cart(models.Model):
 
     
 class Checkout(models.Model):
-    cart=models.ManyToManyField(Cart,blank=True, null=True)
+    cart=models.ForeignKey(Cart,on_delete=models.CASCADE,blank=True, null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
     name=models.CharField(max_length=50,blank=True, null=True)
     address=models.CharField(max_length=50,blank=True, null=True)
