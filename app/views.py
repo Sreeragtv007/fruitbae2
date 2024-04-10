@@ -78,4 +78,5 @@ def addReview(request,pk):
     return redirect('shopdetails' ,pk=pk)
     
 
-        
+def userDetails(request):
+    return render (request,'userdetails.html')
