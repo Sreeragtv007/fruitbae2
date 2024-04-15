@@ -31,31 +31,33 @@
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
-                                <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
-                                    id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
-                                    aria-controls="nav-about" aria-selected="true">Description</button>
+                               
                                 <button class="nav-link border-white border-bottom-0" type="button" role="tab"
                                     id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
                                     aria-controls="nav-mission" aria-selected="false">Reviews</button>
                             </div>
                         </nav>
-                        <div class="tab-content mb-5">
-                            <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                               
-                                <p>{{product.desc}}.</p>
-                               
-                            </div>
+                        <div class="">
+                           
                             {% for i in review  %}
                               
                            
                             <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                                 
-                                        <p class="mb-2" style="font-size: 14px;">{{i.created}}</p>
-                                        <div class="d-flex justify-content-between">
-                                            <h5>{{i.user}}</h5>
+                                        <p class="mb-2" style="font-size: 14px;"><h6>{{i.created}}</h6></p>
+                                        <div class="">
+                                            <h6>{{i.user}}</h6>
+                                            <h4>{{i.product_review}}</h4>
+                                            <button type="submit" class="btn border border-secondary text-primary rounded-pill px-4 py-3 "><a href="{% url 'deletereview' i.id %}">delete</a></button>
+
+
+                                            
+
                                           
                                         </div>
-                                        <p>{{i.product_review}} </p>
+                                        
+
+                                        <hr>
                                     </div> {% endfor %}
                                     <hr>
                                 </div>

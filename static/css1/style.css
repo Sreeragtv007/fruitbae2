@@ -504,4 +504,9 @@
     line-height: 35px;
 }
 /*** Footer End ***/
- */
+
+ .disc{
+    width: auto;
+    background-color:aqua
+    height: 20px;
+ }

@@ -60,64 +60,63 @@ def checkOut(request):
         context = {
             'cart': cart, 'razorpay_total_amount': razorpay_total_amount, 'total': total}
         return render(request, 'checkout.html', context)
+    if request.method == 'POST':
+        print('request is post')
+        messages.info(request,'order completed sucessfully')
+        return redirect('index')
 
 
-razorpay_client = razorpay.Client(
-    auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+# razorpay_client = razorpay.Client(
+#     auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
 
 
-def homepage(request):
-    cart = Cart.objects.filter(user=request.user).filter(order_complted=False)
-    print(cart)
-    total = 0
-    for i in cart:
-        total = total + i.product.price
+# def homepage(request):
+#     cart = Cart.objects.filter(user=request.user).filter(order_complted=False)
+#     print(cart)
+#     total = 0
+#     for i in cart:
+#         total = total + i.product.price
 
-    name = request.POST.get('name')
-    address = request.POST.get('address')
-    pincode = request.POST.get('pincode')
-    email = request.POST.get('email')
-    
-    
-    for i in cart:
-        
+#     name = request.POST.get('name')
+#     address = request.POST.get('address')
+#     pincode = request.POST.get('pincode')
+#     email = request.POST.get('email')
 
-        checkout = Checkout.objects.create(user=request.user,
-                                       name=name,
-                                       address=address,
-                                       pincode=pincode,
-                                       email=email)
-        checkout.cart=i
-        checkout.save()
-        
+#     for i in cart:
 
-   
+#         checkout = Checkout.objects.create(user=request.user,
+#                                            name=name,
+#                                            address=address,
+#                                            pincode=pincode,
+#                                            email=email)
+#         checkout.cart = i
+#         checkout.save()
 
-    currency = 'INR'
-    amount = request.POST.get('total_price')  # Rs. 200
+#     currency = 'INR'
+#     amount = request.POST.get('total_price')  # Rs. 200
 
-    # Create a Razorpay Order
-    razorpay_order = razorpay_client.order.create(dict(amount=amount,
-                                                       currency=currency,
-                                                       payment_capture='0'))
+#     # Create a Razorpay Order
+#     razorpay_order = razorpay_client.order.create(dict(amount=amount,
+#                                                        currency=currency,
+#                                                        payment_capture='0'))
 
-    # order id of newly created order.
-    razorpay_order_id = razorpay_order['id']
-    callback_url = 'paymenthandler/'
+#     # order id of newly created order.
+#     razorpay_order_id = razorpay_order['id']
+#     callback_url = 'paymenthandler/'
 
-    # we need to pass these details to frontend.
-    context = {}
-    context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
-    context['razorpay_amount'] = amount
-    context['currency'] = currency
-    context['callback_url'] = callback_url
-    context['razorpay_amount_total'] = int(amount)/100
-    context['razorpay_order_id'] = razorpay_order_id
+#     # we need to pass these details to frontend.
+#     context = {}
+#     context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
+#     context['razorpay_amount'] = amount
+#     context['currency'] = currency
+#     context['callback_url'] = callback_url
+#     context['razorpay_amount_total'] = int(amount)/100
+#     context['razorpay_order_id'] = razorpay_order_id
 
-    return render(request, 'payment.html', context=context)
+#     return render(request, 'payment.html', context=context)
 
 
-def paymenthandler(request):
+# def paymenthandler(request):
 
     # only accept POST request.
     if request.method == "POST":

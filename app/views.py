@@ -39,9 +39,10 @@ def index(request, **kwargs):
 @login_required(login_url='login')
 def shopDetails(request, pk):
     product = Product.objects.get(id=pk)
-    review=Review.objects.all()
+    review=Review.objects.filter(product=pk)
+    
+    
     related_product=Product.objects.filter(categ=product.categ)
-    print(related_product)
 
     context = {'product': product,'review':review,'related_product':related_product}
     return render(request, 'shop-detail.html', context)
@@ -74,9 +75,18 @@ def addReview(request,pk):
     product=Product.objects.get(id=pk)
     user=request.user
     review=Review.objects.create(user=user,product_review=request.POST['review'],product=product)
-    
-    return redirect('shopdetails' ,pk=pk)
+    review=Review.objects.filter(product=pk)
+    return redirect('shopdetails',pk=pk)
     
 
 def userDetails(request):
     return render (request,'userdetails.html')
+
+
+def deleteReview(request,pk):
+    review=Review.objects.get(id=pk)
+    
+    
+    review.delete()
+    
+    return redirect('shopdetails',pk=review.product.id)
