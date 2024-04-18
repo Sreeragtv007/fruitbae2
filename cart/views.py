@@ -2,6 +2,7 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from .models import *
 from app.models import *
+from order.models import *
 
 from django.contrib import messages
 from django.conf import settings
@@ -48,6 +49,7 @@ def removeFromCart(request, pk):
 
 def checkOut(request):
     cart = Cart.objects.filter(user=request.user).filter(order_complted=False)
+    print('working checkout')
 
     total_price = 0
     for i in cart:
@@ -61,9 +63,18 @@ def checkOut(request):
             'cart': cart, 'razorpay_total_amount': razorpay_total_amount, 'total': total}
         return render(request, 'checkout.html', context)
     if request.method == 'POST':
-        print('request is post')
-        messages.info(request,'order completed sucessfully')
-        return redirect('index')
+         name=request.POST.get('name')
+         address=request.POST.get('address')
+         pincode=request.POST.get('pincode')
+         email=request.POST.get('email')
+         address=Address.objects.create(name=name,address=address,pincode=pincode,email=email,user=request.user)
+         for i in cart:
+             order=Order.objects.create(product=i,user=request.user,address=address)
+             i.order_complted=True
+         messages.success(request,"your order is complited")
+         return redirect ("index")
+    
+        
 
 
 # razorpay_client = razorpay.Client(
