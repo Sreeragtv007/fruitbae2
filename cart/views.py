@@ -67,10 +67,12 @@ def checkOut(request):
          address=request.POST.get('address')
          pincode=request.POST.get('pincode')
          email=request.POST.get('email')
+         print(request.POST.get('email'))
          address=Address.objects.create(name=name,address=address,pincode=pincode,email=email,user=request.user)
          for i in cart:
              order=Order.objects.create(product=i,user=request.user,address=address)
              i.order_complted=True
+             i.save()
          messages.success(request,"your order is complited")
          return redirect ("index")
     
