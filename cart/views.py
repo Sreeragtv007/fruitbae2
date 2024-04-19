@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import *
 from app.models import *
 from order.models import *
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 from django.conf import settings
@@ -10,6 +11,7 @@ import razorpay
 
 
 # Create your views here.
+@login_required(login_url='login')
 def cart(request, *args, **kwargs):
 
     cart = Cart.objects.filter(user=request.user).filter(order_complted=False)
@@ -25,7 +27,7 @@ def cart(request, *args, **kwargs):
                'cart_total': cart_total}
     return render(request, 'cart.html', context)
 
-
+@login_required(login_url='login')
 def addtoCart(request, pk):
 
     if Cart.objects.filter(product=pk).filter(order_complted=False):

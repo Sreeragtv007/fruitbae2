@@ -3,9 +3,9 @@ from cart.models import *
 from .models import *
 
 
-
+@login_required(login_url='login')
 def userOrder(request):
-    order=Order.objects.all()
+    order=Order.objects.filter(user=request.user)
     
     context={'order':order}
     return render(request,'userdetails.html',context)

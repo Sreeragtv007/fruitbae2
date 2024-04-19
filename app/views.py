@@ -30,7 +30,6 @@ def index(request, **kwargs):
     return render(request, 'products.html', context)
 
 
-@login_required(login_url='login')
 def shopDetails(request, pk):
     product = Product.objects.get(id=pk)
     review = Review.objects.filter(product=pk)
@@ -42,7 +41,6 @@ def shopDetails(request, pk):
     return render(request, 'shop-detail.html', context)
 
 
-@login_required(login_url='login')
 def productFilter(request, pk):
     user = User.objects.all().count()
     category = Category.objects.all()
@@ -63,7 +61,7 @@ def productFilter(request, pk):
                'user': user, 'total_products': total_products}
     return render(request, 'products.html', context)
 
-
+@login_required(login_url='login')
 def addReview(request, pk):
     product = Product.objects.get(id=pk)
     user = request.user
