@@ -84,3 +84,9 @@ def deleteReview(request, pk):
 
 # def searchProduct(request):
 #     product=Product.objects.filter()
+
+def search(request):
+    obj=Product.objects.filter(name__icontains=request.GET.get('search'))
+    
+    context={'page_obj':obj}
+    return render(request,'products.html',context)
