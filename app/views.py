@@ -3,10 +3,10 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
-
+@cache_page(60 * 15)
 def index(request, **kwargs):
 
     user = User.objects.all().count()
@@ -29,7 +29,7 @@ def index(request, **kwargs):
                'user': user, 'total_products': total_products, 'page_obj': page_obj, }
     return render(request, 'products.html', context)
 
-
+@cache_page(60 * 15)
 def shopDetails(request, pk):
     product = Product.objects.get(id=pk)
     review = Review.objects.filter(product=pk)
@@ -40,7 +40,7 @@ def shopDetails(request, pk):
                'related_product': related_product}
     return render(request, 'shop-detail.html', context)
 
-
+@cache_page(60 * 15)
 def productFilter(request, pk):
     user = User.objects.all().count()
     category = Category.objects.all()
@@ -60,6 +60,7 @@ def productFilter(request, pk):
     context = {'page_obj': page_obj, 'category': category,
                'user': user, 'total_products': total_products}
     return render(request, 'products.html', context)
+
 
 @login_required(login_url='login')
 def addReview(request, pk):
@@ -85,8 +86,9 @@ def deleteReview(request, pk):
 # def searchProduct(request):
 #     product=Product.objects.filter()
 
+
 def search(request):
-    obj=Product.objects.filter(name__icontains=request.GET.get('search'))
-    
-    context={'page_obj':obj}
-    return render(request,'products.html',context)
+    obj = Product.objects.filter(name__icontains=request.GET.get('search'))
+
+    context = {'page_obj': obj}
+    return render(request, 'products.html', context)

@@ -146,11 +146,17 @@ RAZOR_KEY_ID = 'rzp_test_KUQnsWbCNAR1d5'
 RAZOR_KEY_SECRET = 'dRkVtesLD1jiz3cYngswxTw8'
 
 
-# INTERNAL_IPS = [
-#     # ...
-#     "127.0.0.1",
-#     # ...
-# ]
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+
 
 
 CSRF_TRUSTED_ORIGINS = ['https://front.bluemix.net']
+
+
+RAZORPAY_KEY_ID = 'rzp_test_HPZWh7raym30cF' 
+RAZORPAY_KEY_SECRET = 'U6RWAjrRfq8UFWpl3SDKe68T'

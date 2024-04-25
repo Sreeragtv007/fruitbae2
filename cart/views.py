@@ -27,6 +27,7 @@ def cart(request, *args, **kwargs):
                'cart_total': cart_total}
     return render(request, 'cart.html', context)
 
+
 @login_required(login_url='login')
 def addtoCart(request, pk):
 
@@ -51,7 +52,6 @@ def removeFromCart(request, pk):
 
 def checkOut(request):
     cart = Cart.objects.filter(user=request.user).filter(order_complted=False)
-    print('working checkout')
 
     total_price = 0
     for i in cart:
@@ -65,20 +65,24 @@ def checkOut(request):
             'cart': cart, 'razorpay_total_amount': razorpay_total_amount, 'total': total}
         return render(request, 'checkout.html', context)
     if request.method == 'POST':
-         name=request.POST.get('name')
-         address=request.POST.get('address')
-         pincode=request.POST.get('pincode')
-         email=request.POST.get('email')
-         print(request.POST.get('email'))
-         address=Address.objects.create(name=name,address=address,pincode=pincode,email=email,user=request.user)
-         for i in cart:
-             order=Order.objects.create(product=i,user=request.user,address=address)
-             i.order_complted=True
-             i.save()
-         messages.success(request,"your order is complited")
-         return redirect ("index")
-    
-        
+        name = request.POST.get('name')
+        address = request.POST.get('address')
+        pincode = request.POST.get('pincode')
+        email = request.POST.get('email')
+        delivery = request.POST.get('test')
+        # checking cash on delivery or not
+
+        # if delivery:
+
+        address = Address.objects.create(
+            name=name, address=address, pincode=pincode, email=email, user=request.user)
+        for i in cart:
+            order = Order.objects.create(
+                product=i, user=request.user, address=address)
+            i.order_complted = True
+            i.save()
+        messages.success(request, "your order is complited")
+        return redirect("index")
 
 
 # razorpay_client = razorpay.Client(

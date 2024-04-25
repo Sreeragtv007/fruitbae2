@@ -18,6 +18,7 @@
                     <th scope="col"></th>
                     <th scope="col">Products</th>
                     <th scope="col"> Total Price</th>
+                    <th scope="col"> Order status</th>
                     
                   </tr>
                 </thead>
@@ -33,10 +34,13 @@
                             </div>
                         </th>
                         <td>
-                            <p class="mb-0 mt-4"><h4>{{i.product.product}}</h4></p>
+                            <p class="mb-0 mt-4"><h4>{{i.product.product.name}}</h4></p>
                         </td>
                         <td>
                             <p class="mb-0 mt-4"><h4>{{i.product.product.price}} </h4>$</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4"><h6>{{i.orderstatus}} </h6></p>
                         </td>
                         <!-- <td>
                          

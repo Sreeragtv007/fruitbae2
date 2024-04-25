@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Address)
 admin.site.register(Order)
 
+
