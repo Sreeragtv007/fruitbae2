@@ -70,6 +70,8 @@ def checkOut(request):
         pincode = request.POST.get('pincode')
         email = request.POST.get('email')
         delivery = request.POST.get('test')
+        
+            
         # checking cash on delivery or not
 
         # if delivery:
@@ -80,9 +82,13 @@ def checkOut(request):
             order = Order.objects.create(
                 product=i, user=request.user, address=address)
             i.order_complted = True
+           
             i.save()
-        messages.success(request, "your order is complited")
-        return redirect("index")
+            if delivery :
+                return redirect ('hoempage',razorpay_total_amount)
+            messages.success(request, "your order is complited")
+        
+            return redirect("index")
 
 
 # razorpay_client = razorpay.Client(

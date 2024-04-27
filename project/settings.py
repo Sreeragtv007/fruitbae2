@@ -146,11 +146,11 @@ RAZOR_KEY_ID = 'rzp_test_KUQnsWbCNAR1d5'
 RAZOR_KEY_SECRET = 'dRkVtesLD1jiz3cYngswxTw8'
 
 
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
+# INTERNAL_IPS = [
+#     # ...
+#     "127.0.0.1",
+#     # ...
+# ]
 
 
 

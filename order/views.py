@@ -28,10 +28,10 @@ def onlinePayment(request):
 
 razorpay_client = razorpay.Client(
     auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
-def homepage(request):
+def homepage(request,razorpay_total_amount):
     
     currency = 'INR'
-    amount = 20000  # Rs. 200
+    amount = razorpay_total_amount  # Rs. 200
  
     # Create a Razorpay Order
     razorpay_order = razorpay_client.order.create(dict(amount=amount,

@@ -32,7 +32,7 @@ class Order(models.Model):
         User, on_delete=models.CASCADE, blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
 
-    created_date = models.DateTimeField(auto_created=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     orderstatus = models.CharField(max_length=50,
                                    choices=choice,
                                    default="WAITING FOR SHIPPING")
