@@ -13,11 +13,13 @@
         <div class="table-responsive">
             <table class="table">
                 <thead>
-                    <h4>order details</h4>
+                  
                   <tr>
                     <th scope="col"></th>
                     <th scope="col">Products</th>
                     <th scope="col"> Total Price</th>
+                    <th scope="col"> purchased date</th>
+
                     <th scope="col"> Order status</th>
                     
                   </tr>
@@ -34,13 +36,16 @@
                             </div>
                         </th>
                         <td>
-                            <p class="mb-0 mt-4"><h4>{{i.product.product.name}}</h4></p>
+                            <p class="mb-0 mt-4"><h5>{{i.product.product.name}}</h5></p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4"><h4>{{i.product.product.price}} </h4>$</p>
+                            <p class="mb-0 mt-4"><h5>{{i.product.product.price}} </h5>$</p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4"><h6>{{i.orderstatus}} </h6></p>
+                            <p class="mb-0 mt-4"><h5>{{i.created_date}} </h5>$</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4"><h5>{{i.orderstatus}} </h5></p>
                         </td>
                         <!-- <td>
                          

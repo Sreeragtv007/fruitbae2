@@ -4,12 +4,16 @@ from .models import *
 from django.conf import settings
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.files.base import ContentFile
+import io
+import os
+from reportlab.pdfgen import canvas
 from django.http import HttpResponseBadRequest
-
+from django.http import HttpResponse, Http404
 
 @login_required(login_url='login')
 def userOrder(request):
+   
     order = Order.objects.filter(user=request.user)
 
     context = {'order': order}
@@ -98,3 +102,48 @@ def paymenthandler(request):
        # if other than POST request is made.
         return HttpResponseBadRequest()
 
+
+def invoiceGeneration(request):
+     invoice = Order.objects.filter(
+        user=request.user, orderstatus='DELIVERED').filter(invoice_created=False)
+     if invoice:
+        for i in invoice:
+            
+            file_path = os.path.join(settings.MEDIA_ROOT, i.product.product.image.path)
+
+            # Create a PDF buffer in memory
+            buffer = io.BytesIO()
+            p = canvas.Canvas(buffer)
+            #p.drawString(30, 800, f'Date{time}')
+            p.drawString(100, 750, f'Product name :{i.product.product.name}')
+            p.drawImage(file_path, 400, 700, 100, 100)
+            p.drawString(100, 700, f'quantity  :{i.product.qty}')
+            p.drawString(100, 650, f'total price  :{i.product.total}')
+            #p.drawString(100, 600, f'address :{i.address}{i.pincode}')
+            p.drawString(100, 550, f'purchase time  :{i.created_date}')
+
+            p.showPage()
+            p.save()
+
+        # Retrieve the generated PDF as bytes
+            pdf_file = buffer.getvalue()
+
+            # Create a new model instance and save the PDF:
+            # my_model = Savepdf.objects.create(name='example1')
+
+            i.file.save(f'generated_pdf{i.id}.pdf', ContentFile(pdf_file))
+            i.invoice_created = True
+            i.save()
+    
+            return redirect ('index')
+def downloadInvoice(request, pk):
+    obj = Order.objects.get(product_id=pk)
+    file_path = os.path.join(settings.MEDIA_ROOT, obj.file.path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(
+                fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + \
+                os.path.basename(file_path)
+            return response
+    raise Http404

@@ -8,6 +8,11 @@ urlpatterns = [
         path('payment/',onlinePayment,name='payment'),
          path('homepage/<str:razorpay_total_amount>/',homepage, name='hoempage'),
         path('paymenthandler/',paymenthandler, name='paymenthandler'),
+        path('invoicegeneration/',invoiceGeneration, name='invoicegeneration'),
+
+        path('downloadInvoice/<str:pk>/',downloadInvoice, name='downloadInvoice'),
+        
+        
 ]
        
 

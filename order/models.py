@@ -6,13 +6,7 @@ from django.db.models.fields import CharField
 
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
-choice = (
-    ("WAITING FOR SHIPPING", "waiting for shipping"),
-    ("PRODUCT ON THE WAY", "product on the way"),
-    ("OUT OF DELIVERY", "out of delivery"),
 
-    ("DELIVERED", "delivered"),
-)
 
 
 class Order(models.Model):
@@ -36,6 +30,8 @@ class Order(models.Model):
     orderstatus = models.CharField(max_length=50,
                                    choices=choice,
                                    default="WAITING FOR SHIPPING")
+    file = models.FileField(upload_to='pdffile', blank=True, null=True)
+    invoice_created = models.BooleanField(blank=True, null=True, default=False)
 
 
 class Address(models.Model):
