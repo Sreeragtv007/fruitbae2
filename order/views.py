@@ -15,8 +15,10 @@ from django.http import HttpResponse, Http404
 def userOrder(request):
    
     order = Order.objects.filter(user=request.user)
+    
 
     context = {'order': order}
+    invoiceGeneration(request)
     return render(request, 'userdetails.html', context)
 
 
@@ -24,6 +26,7 @@ def cancelOrder(request, pk):
     order = Order.objects.get(id=pk)
     order.delete()
     messages.info(request, "order cancelled sucessfully")
+    
     return redirect('userdetails')
 
 def onlinePayment(request):
@@ -104,6 +107,7 @@ def paymenthandler(request):
 
 
 def invoiceGeneration(request):
+     print('wooo')
      invoice = Order.objects.filter(
         user=request.user, orderstatus='DELIVERED').filter(invoice_created=False)
      if invoice:
@@ -137,7 +141,7 @@ def invoiceGeneration(request):
     
             return redirect ('index')
 def downloadInvoice(request, pk):
-    obj = Order.objects.get(product_id=pk)
+    obj = Order.objects.get(id=pk)
     file_path = os.path.join(settings.MEDIA_ROOT, obj.file.path)
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
