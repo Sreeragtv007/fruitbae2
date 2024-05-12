@@ -51,12 +51,15 @@
                          
                         <input type="number" class="mb-0 mt-4 " style="width: 50px;"  name="qty">
                         </td> -->
-                       
+                       {% if i.orderstatus != "DELIVERED"  %}
+                         
+                      
                         <td>
-                            <button class="btn btn-md rounded-circle bg-light border mt-4" type="" >
+                            <button class="btn btn-md  bg-light border mt-4" type="" >
                                 <i class="text-danger"><a href="{% url 'cancelorder' i.id %}">cancel order</a></i>
                             </button>
                         </td>
+                        {% endif %}
                         {% if  i.orderstatus == "DELIVERED" %}
                           
                       

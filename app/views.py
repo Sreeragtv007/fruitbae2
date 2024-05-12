@@ -7,7 +7,7 @@ from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
 def index(request, **kwargs):
 
     user = User.objects.all().count()

@@ -160,3 +160,15 @@ CSRF_TRUSTED_ORIGINS = ['https://front.bluemix.net']
 
 RAZORPAY_KEY_ID = 'rzp_test_HPZWh7raym30cF' 
 RAZORPAY_KEY_SECRET = 'U6RWAjrRfq8UFWpl3SDKe68T'
+
+
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379/1', # Replace with your Redis server details
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         }
+#     }
+# }
