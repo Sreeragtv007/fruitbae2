@@ -49,6 +49,10 @@
     height: 44px;
 }
 
+#categ-color{
+    background-color: aqua;
+}
+
 .btn-lg-square {
     width: 56px;
     height: 56px;
@@ -169,6 +173,12 @@
     border-radius: 10px !important;
     transition: .5s;
     opacity: 1;
+}
+
+
+.img-fluid{
+    width: 100px;
+    height: 100px;
 }
 
 #searchModal .modal-content {

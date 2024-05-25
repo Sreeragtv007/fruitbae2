@@ -5,9 +5,11 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.cache import cache_page
 
+import random
+
 # Create your views here.
 
-# @cache_page(60 * 15)
+
 def index(request, **kwargs):
 
     user = User.objects.all().count()
@@ -25,9 +27,17 @@ def index(request, **kwargs):
     except EmptyPage:
 
         page_obj = p.page(p.num_pages)
+    all_products=Product.objects.all()
+    
+    try:
+        random_number = random.randint(0,9) 
+        print(random_number)
+        herosection=all_products[random_number]
+    except:
+        herosection=None
 
     context = {'category': category,
-               'user': user, 'total_products': total_products, 'page_obj': page_obj, }
+               'user': user, 'total_products': total_products, 'page_obj': page_obj,'herosection':herosection }
     return render(request, 'products.html', context)
 
 @cache_page(60 * 15)
@@ -36,6 +46,7 @@ def shopDetails(request, pk):
     review = Review.objects.filter(product=pk)
 
     related_product = Product.objects.filter(categ=product.categ)
+    
 
     context = {'product': product, 'review': review,
                'related_product': related_product}
@@ -89,7 +100,8 @@ def deleteReview(request, pk):
 
 
 def search(request):
-    obj = Product.objects.filter(name__icontains=request.GET.get('search'))
+    obj = Product.objects.filter(name__icontains=request.POST.get('search'))
+    print(obj)
 
     context = {'page_obj': obj}
     return render(request, 'products.html', context)
